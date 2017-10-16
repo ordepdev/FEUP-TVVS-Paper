@@ -1,0 +1,31 @@
+\documentclass[a4paper]{article}
+
+\providecommand{\keywords}[1]{\par\textbf{\textit{Keywords:}} #1}
+
+\usepackage{url,tocloft,cite}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\title{An overview on testing automation techniques and strategies}
+\author{Pedro Tavares}
+
+\begin{document}
+
+\maketitle
+
+\input{./misc/abstract.tex}
+
+\tableofcontents
+
+\section{Overview}
+\input{./sections/model-driven.tex}
+\section{Data-Driven}
+\section{Keyword-Driven}
+\section{Hybrid-Driven}
+\section{Conclusion}
+
+\bibliographystyle{plain}
+\bibliography{paper}
+
+\end{document}
+
+
