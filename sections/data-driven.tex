@@ -3,7 +3,6 @@
 Data-driven testing is a scripting technique that stores test inputs and
 expected outcomes as data, normally in a tabular format, so that a single
 driver script can execute all of the designed test cases~\cite{Fewster99}.
-
 Usually, testing scripts that don't follow a data-driven approach, have data
 attached into them. When test data needs to be updated the actual test script
 must be changed as well. This might not be a big deal for the person who
@@ -45,24 +44,24 @@ Data-driven testing calls for tabular data and the first instinct is to use
 spreadsheet programs to edit it~\cite{Lau07}. Spreadsheet files like
 comma-separated-values (CSV) are handy because they are very easy to parse but
 unfortunately the data becomes inconsistent when edited by two or more different
-spreadsheet programs.
-
-But the biggest problem with storing test data into any kind of flat file is
-scalability~\cite{Lau07}. If for example test data is created and edited in
-several workstations and used in multiple test environments it gets hard to have
-the same version of the data everywhere.
-
+spreadsheet programs. But the biggest problem with storing test data into any
+kind of flat file is scalability~\cite{Lau07}. If for example test data is
+created and edited in several workstations and used in multiple test
+environments it gets hard to have the same version of the data everywhere.
 Moving the data files to a central database, backed up by a web-based
 interface in order to manage the test data, is a suitable solution when
 scalability is a requirement. This way, the driver scripts can read test data
 directly from the database instead of parsing CSV files before running the
 test suite.
 
-Whatever design decisions are made about the driver script, the test data must
-reflect to it~\cite{Fewster99}. This means that if we change either the driver
-or the format of the data, we need to make sure they are always in sync.
-
 \subsection{Processing Test Data}
+
+Implementing a script for parsing data-driven test data can be surprisingly
+easy either using data files or databases~\cite{Lau07}. Data is processed line
+by line and split into cells that represent the test inputs making the data
+available to be used in the test scripts. The main drawback is that the parser
+will always be limited in extensibility and it will crash if the test data
+format changes.
 
 \begin{figure}[!ht]
 \centering
@@ -100,19 +99,23 @@ or the format of the data, we need to make sure they are always in sync.
 \caption{Data-driven approach.} \label{fig:F1}
 \end{figure}
 
-\subsection{Advantages of data-driven testing}
+Whatever design decisions are made about the driver script, the test data must
+reflect to it~\cite{Fewster99}. This means that if we change either the driver
+or the format of the data, we need to make sure they are always in sync.
 
-With data-driven testing we can really start to benefit from test automation~\cite{Fewster99}.
-It is possible to implement many more test cases with very little extra effort
-since all we have to do is specify a new set of input data and expected results
-for each additional test case.
+\subsection{Advantages of data-driven testing}
 
 A major advantage of the data-driven testing is that the format of the
 data file can be tailored to suit the testers needs~\cite{Fewster99}. The data
 file can contain comments that the script will ignore but that will make the
 data file much more understandable and, therefore, maintainable even by
 non-technical people. The easier it is, the quicker and less error prone it
-will be.\\[1mm]
+will be.
+
+With data-driven testing we can really start to benefit from test automation~\cite{Fewster99}.
+It is possible to implement many more test cases with very little extra effort
+since all we have to do is specify a new set of input data and expected results
+for each additional test case.\\[1mm]
 
 \noindent Summarizing the advantages of the data-driven approach:
 
