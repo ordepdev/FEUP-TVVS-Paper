@@ -2,6 +2,7 @@
 
 \providecommand{\keywords}[1]{\par\textbf{\textit{Keywords:}} #1}
 
+\usepackage[table]{xcolor}
 %\usepackage[showframe]{geometry}
 \usepackage{geometry}
 \usepackage{url,tocloft,cite,subfiles,graphicx,fancyhdr,titling,enumitem,tikz,hyperref}
@@ -48,7 +49,7 @@
 \author{Pedro Tavares}
 
 \begin{document}
-
+\rowcolors{2}{gray!15}{white}
 \begin{titlingpage}
 \maketitle
 \end{titlingpage}
@@ -60,7 +61,7 @@
 \newpage
 \subfile{sections/introduction}
 \newpage
-%\subfile{sections/model-driven}
+\subfile{sections/model-driven}
 \subfile{sections/data-driven}
 \subfile{sections/keyword-driven}
 \section{Hybrid-Driven}

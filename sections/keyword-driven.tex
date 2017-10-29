@@ -1,9 +1,51 @@
 \section{Keyword-Driven}
 
 Keyword-driven testing is a logical extension to data-driven testing~\cite{Fewster99}.
-Besides test data it also makes use of keywords in order to instruct how the
+Besides test data, it also makes use of keywords in order to instruct how the
 data is read from the external data source and to be interpreted by the test
-scripts. It combines the data-driven technique with the desire to be able to
-specify automated test cases without having to specify all the excessive detail.
+scripts. It takes the concept of data-driven testing even further~\cite{Lau07}
+by adding keywords driving the test executing into the test data with the desire
+to be able to specify automated test cases without having to specify all the
+excessive detail. The test data file is expanded and it becomes a description of
+the test case using a set of keywords to indicate the tasks to be performed.
+Obviously, the driver script has to be able to interpret the keywords in order
+to execute the desired test case.
 
-The key to keyword-driven testing is to identify the right keywords.
+\begin{table}[!ht]
+\centering
+\begin{tabular}{lll}
+\textbf{Test Case} & \textbf{Keyword} & \textbf{Value} \\
+Addition 01 & & \\
+& set\_operand & 5 \\
+& set\_operator & + \\
+& set\_operand & 5 \\
+& check\_result & 10 \\
+Addition 02  & & \\
+& set\_operand & 5 \\
+& set\_operator & + \\
+& set\_operand & 10 \\
+& set\_operator & - \\
+& set\_operand & 1 \\
+& check\_result & 14 \\
+\end{tabular}
+\caption{Keyword-driven test data with mathematical operations.}
+\label{table:tab2}
+\end{table}
+
+Back to the previous scenario on data-driven testing where the operation
+10 * 5 - 5 = 45 would require major changes to both test data and driver
+scripts. The keyword-driven testing is the perfect technique to perform that
+kind of scenarios. They could be extended with no further development since the
+keywords are already implemented by the driver script. This way, the driver
+script is no longer tied to a particular feature of the software under test,
+nor indeed to a particular application or system~\cite{Fewster99}.
+
+This technique takes a descriptive approach to test case implementation since
+the test file describes the test case, by stating what the test case does and
+not how it does it. To implement an automated test case we have only to provide
+a description of the test case more or less as we would do for a knowledgeable
+human tester. By using this approach we can build knowledge of the system under
+test into our test automation environment. People with business knowledge can
+concentrate on the test files while people with technical skills can concentrate
+on the driver scripts since it is possible to develop the test cases separately
+from the test scripts due to the abstraction created by the test files.
