@@ -5,7 +5,7 @@
 \usepackage[table]{xcolor}
 %\usepackage[showframe]{geometry}
 \usepackage{geometry}
-\usepackage{url,tocloft,cite,subfiles,graphicx,fancyhdr,titling,enumitem,tikz,hyperref}
+\usepackage{url,tocloft,cite,subfiles,graphicx,fancyhdr,titling,enumitem,tikz,hyperref,listings}
 
 \pagestyle{fancy}
 \fontfamily{garamond}
@@ -14,7 +14,7 @@
 \fancyfoot[R]{\thepage} % page number on right footer 
 \setlength{\headheight}{40pt} % header height
 \setlist[itemize]{noitemsep, topsep=0pt}
-\lhead{\includegraphics[width=4cm]{UP-02.png}} % header with image
+\lhead{\includegraphics[width=4.5cm]{UP-02.png}} % header with image
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \renewcommand{\headrulewidth}{0pt} % no line in header area
@@ -36,6 +36,24 @@
 \usepackage[scale=.95,type1]{cabin}
 \usepackage[baskerville,vvarbb]{newtxmath}
 \usepackage[cal=boondoxo]{mathalfa}
+
+\lstset{frame=tb,
+  aboveskip=5mm,
+  belowskip=5mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={const, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\bfseries
+}
 
 % front page
 \pretitle{%
@@ -61,10 +79,13 @@
 \newpage
 \subfile{sections/introduction}
 \newpage
-\subfile{sections/model-driven}
 \subfile{sections/data-driven}
 \subfile{sections/keyword-driven}
+\newpage
+\subfile{sections/model-driven}
+\newpage
 \section{Hybrid-Driven}
+\newpage
 \section{Conclusion}
 
 \newpage

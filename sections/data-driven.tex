@@ -13,8 +13,15 @@ Data represents a large part of system and test specification. By considering
 how data is defined and used during testing we can increase the opportunity
 of reuse as well as reduce future maintenance costs for subsequent releases of
 the system being developed. That's what make data-driven testing extremely
-useful since one single test script can be used to run different tests reducing
+useful since one single test script can be used to run different tests, reducing
 the number of the overall test scripts needed to implement all the test cases.
+
+A suitable scenario where data-driven testing can be applied is when two or more
+test cases requires the same instructions but different inputs and different
+expected outcomes. The refactoring would result in one single test script and a
+shared input data file.
+
+\subsection{Test Data}
 
 \begin{table}[!ht]
 \centering
@@ -33,12 +40,7 @@ Division 02 & 10 & / & 10 & 0 \\
 \label{table:tab1}
 \end{table}
 
-A suitable scenario where data-driven testing can be applied is when two or more
-test cases requires the same instructions but different inputs and different
-expected outcomes. The refactoring would result in one single test script and a
-shared input data file.
-
-\subsection{Storing Test Data}
+\subsection{How to store test data?}
 
 Data-driven testing calls for tabular data and the first instinct is to use
 spreadsheet programs to edit it~\cite{Lau07}. Spreadsheet files like
@@ -61,7 +63,25 @@ easy either using data files or databases~\cite{Lau07}. Data is processed line
 by line and split into cells that represent the test inputs making the data
 available to be used in the test scripts. The main drawback is that the parser
 will always be limited in extensibility and it will crash if the test data
-format changes.
+format changes. Whatever design decisions are made about the driver script,
+the test data must reflect to it~\cite{Fewster99}. This means that if we change
+either the driver or the format of the data, we need to make sure they are
+always in sync.
+
+\begin{lstlisting}[caption={Example of data-driven driver script.},
+    label={lst:lis1},language=JavaScript]
+const TestData = require('./testData');
+const Calculator = require('./calculator');
+
+TestData.testCases().forEach(function(testCase) {
+  const input1 = testCase.input1();
+  const operation = testCase.operation();
+  const input2 = testCase.input2();
+  const expected = testCase.result();
+
+  execute(input1, operation, input2, expected);
+});
+\end{lstlisting}
 
 \begin{figure}[!ht]
 \centering
@@ -73,7 +93,7 @@ format changes.
   \node (tscript1) [draw, shape=rectangle,minimum width=2cm,
   minimum height=1cm] {\textbf{Test Script 1}}; \\
   \node (parser) [draw, shape=rectangle,
-  minimum width=2cm, minimum height=1cm] {\textbf{Parser}}; & &
+  minimum width=2cm, minimum height=1cm] {\textbf{Data Parser}}; & &
   \node (tscript2) [draw, shape=rectangle,minimum width=2cm,
   minimum height=1cm] {\textbf{Test Script 2}}; &
   \node (sut) [draw, shape=rectangle, minimum width=2cm,
@@ -96,12 +116,14 @@ format changes.
 \draw[->, thick] (tscript2) -- (sut);
 \draw[->, thick] (tscriptn) -| (sut);
 \end{tikzpicture}
-\caption{Data-driven approach.} \label{fig:F1}
+\caption{Data-driven system design approach.} \label{fig:f1}
 \end{figure}
 
-Whatever design decisions are made about the driver script, the test data must
-reflect to it~\cite{Fewster99}. This means that if we change either the driver
-or the format of the data, we need to make sure they are always in sync.
+In this data-driven approach there are a few elements that are crucial and must be implemented:
+\begin{itemize}
+\item \textbf{Data Parser}: It is responsible for parsing the test data, either from a CSV file or a database table. Its main task is to process test data and return it to the driver script providing an easy and neutral access to the test data.
+\item \textbf{Driver Script}: It is responsible for driving the test execution process using the testing functionality provided by the test libraries, that interact with the system under test, and the test data, that is read by the data parser.
+\end{itemize}
 
 \subsection{Advantages of data-driven testing}
 
@@ -117,16 +139,15 @@ It is possible to implement many more test cases with very little extra effort
 since all we have to do is specify a new set of input data and expected results
 for each additional test case.\\[1mm]
 
-\noindent Summarizing the advantages of the data-driven approach:
-
-\begin{itemize}
-\item Reduces the number of overall test scripts needed to
-implement all the test cases;
-\item Less amount of code is required to generate all the test cases;
-\item Offers greater flexibility when it comes to maintenance and fixing of bugs;
-\item The test data can be created before test implementation is ready or even
-before the system to be tested is ready.
-\end{itemize}
+%\noindent Summarizing the advantages of the data-driven approach:
+%\begin{itemize}
+%\item Reduces the number of overall test scripts needed to
+%implement all the test cases;
+%\item Less amount of code is required to generate all the test cases;
+%\item Offers greater flexibility when it comes to maintenance and fixing of bugs;
+%\item The test data can be created before test implementation is ready or even
+%before the system to be tested is ready.
+%\end{itemize}
 
 \subsection{Disadvantages of data-driven testing}
 
@@ -151,9 +172,9 @@ not so high~\cite{Fewster99}. If a data-driven approach is used it will entail
 more work, and will seem excessive. On the other hand, large and complex systems
 gain far more in saved effort than you put in.\\[1mm]
 
-\noindent Summarizing the disadvantages of the data-driven approach:
-\begin{itemize}
-\item Initial set-up takes of lot of effort;
-\item Programming support is required;
-\item It must be well managed.
-\end{itemize}
+%\noindent Summarizing the disadvantages of the data-driven approach:
+%\begin{itemize}
+%\item Initial set-up takes of lot of effort;
+%\item Programming support is required;
+%\item It must be well managed.
+%\end{itemize}
