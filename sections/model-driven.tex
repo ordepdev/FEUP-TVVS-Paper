@@ -27,21 +27,60 @@ development process~\cite{5381477}. Like the data-driven and keyword-driven appr
 
 Summing up, the model is a partial description of the system under test, the abstract tests are derived from the model, and the executable tests are the concrete implementation of the abstract tests that can be run against the system under test.
 
-%\noindent This approach is increasingly gaining the attention of
-%both industry and academia. Actually, is considered as 
-%leading-edge technology in industry. Unlike traditional
-%development techniques which tend to focus on
-%implementation, model-driven software development
-%stresses the use of models at all levels of the software
-%development process~\cite{5381477}.
-
 \subsection{How to model a system?}
 
 The first and most important step in modeling a system for testing is deciding the level of abstraction of the model. It should be clear which aspects of the system under test to include in the model and which aspects to omit. We should always have in mind that a smaller model is often more useful than a large and complex model, since it allow us to test each one of them independently and think about which operations should be included before writing a model for the whole system. 
 
 When modeling a system is also important to think about the data that it manages, the operations that it performs, and the subsystems that it communicates with. The difficulty of test generation is usually highly dependent on the number and range of the input parameters, so applying the same abstraction principle~\cite{Mosley2002} to its input and output parameters helps to control the test generation effort.
 
-% TODO: Define the modeling notation!
+The next step is to decide which notation to use for the model. This decision is
+often influenced by the model-based testing tools that are available and the
+notations they support. It is important to consider which style of notation is
+most suitable for the system under test. There are several modeling notations
+that have been used for modeling the functional behavior of systems~\cite{1200168}: 
+
+\begin{itemize}
+\item \textbf{State-based notations}: These notations model a system as a collection of
+variables, which represent a snapshot of the internal state of the system, plus
+some operations that modify those variables. Examples of these notations include
+the UML Object Constraint Language, the Java Modeling Language and Spec\#.
+\item \textbf{Transition-based notations}: These notations focus on describing the
+transitions between different states of the system. Typically, they are
+graphical notations, such as finite state machines, where the nodes represent
+the major states of the system and the arcs represent the actions or operations
+of the system. Examples of transition-based notations include UML State Machines,
+labeled transition systems, and I/O automata.
+\item \textbf{History-based notations}:  These notations model a system by
+describing the allowable traces of its behavior over time. Various notions of
+time can be used, leading to many kinds of temporal logics. Although they are
+used as a basis for model-based testing they are better used for visualizing the
+tests that result from model-based testing than for defining the model that is
+the input to model-based testing.
+\item \textbf{Functional notations}: These notations describe a system as a
+collection of mathematical functions. Algebraic specifications tend to be more
+abstract and more difficult to write than other notations, so they are not
+widely used for model-based testing.
+\item \textbf{Operational Notations}: These notations describe a system as a
+collection of executable processes, executing in parallel. They are particularly
+suited to describing distributed systems and communications protocols.
+\item \textbf{Stochastic Notations}: These notations describe a system by a
+probabilistic model of the events and input values. They tend to be used to model
+environments rather than systems under test. They are good for specifying
+distributions of events and test inputs for the system under test but are
+generally weak at predicting the expected outputs.
+\item \textbf{Data-flow notations}: These notations concentrate on the flow of
+data through the system under test, rather than its control flow.
+\end{itemize}
+
+State-based notations are best for data-oriented systems and transition-based
+notations are best for control-oriented systems~\cite{1200168} but the system
+could not be so easy to classify and it can be a mix of both data and
+control-oriented. Choosing the wrong notation could make the system harder to
+model. A good choice should the right balance between the notation tooling
+support and what notation suits the system best. It is important to build
+an accurate model, written in a formal modeling notation that has precise
+semantics and unambiguous meaning in order to allow different tools to
+understand and manipulate the model behaviour.
 
 \begin{figure}[!ht]
 \centering
@@ -82,12 +121,39 @@ When modeling a system is also important to think about the data that it manages
 \draw[->, thick] (tscript2) -- (sut);
 \draw[->, thick] (tscriptn) -| (sut);
 
+
+
 \end{tikzpicture}
 \caption{Model-based process approach.} \label{fig:f1}
 \end{figure}
 
-
 After the test generation from the model and the execution of those tests against the system, each test that fails will point either to an error in the implementation of the system or to a mistake in the model. The value of model-based testing comes from the automated cross-checking between the model and the system implementation.
+
+\subsection{Online or Offline Test Generation}
+
+Online testing is where tests are executed as they are generated, so the
+model-based testing tool is tightly coupled to the system under test. It is
+particularly good for testing nondeterministic systems and for long-running test
+sessions, such as overnight testing based on random traversal of a model. This
+kind of technique is sometimes necessary if the system under test is
+non-deterministic, because the test generator can see which path the system has
+taken, and follow the same path in the model.
+
+Offline testing decouples the generation and execution phases, so the test
+execution can be completely independent of the model-based test generation
+process since the test cases are generated strictly before they are run. It can
+perform a deeper analysis of the model to generate a small but
+powerful test suite, and the generated test suite can be inspected, use
+repeatedly for regression purposes, put into a test management system, and so on.
+
+The advantages of offline testing, when applicable, are mostly pragmatic. The
+generated tests can be managed and executed using existing test management tools,
+which means that less changes to the test process are required. One can generate
+a set of tests once, then execute it many times on the system under test. Also,
+the test generation and test execution can be performed on different
+machines or in different environments, as well as at different times. Finally,
+if the test generation process is slower than test execution, then there are
+obvious advantages to doing the test generation phase just once.
  
 \subsection{Challenges in Modeling}
 Model-based testing can improve considerably the test 
@@ -109,7 +175,7 @@ models are significantly higher than for test engineers
 writing sequential test procedures.
 \end{itemize}
 
-\subsection{Prerequisites of model-based testing}
+\subsection{Prerequisites of Model-Based Testing}
 
 It is important to have some high-level management support for the adoption of model-based testing, as well as some enthusiasm for model-based testing among the team who will put it into practice.
 
@@ -121,33 +187,36 @@ Sometimes, model-based testing does not suit the system needs. If the system has
 
 \subsection{Model-Based Testing and Agile methods}
 
-%TODO
-In addition, in terms of industrial adoption, MBT needs to be adapted to the existing testing processes that are shifting towards more agile practices [14] from the traditional ones based on the V-model [15] and its variations. In agile contexts, on the one hand, developers are already relying on test automation to support refactoring and generally understand its benefits as compared to manual testing. 
+In terms of industrial adoption, model-based testing needs to be adapted to the
+existing testing processes that are shifting towards more agile practices
+from the traditional ones based on the V-model and its variations. In agile
+contexts, on the one hand, developers are already relying on test automation to
+support refactoring and generally understand its benefits as compared to manual
+testing.
 
 In the eyes of the agile practitioners, writing acceptance tests
 that specify what the system is supposed to do, brings lot of value:
 \begin{itemize}
 \item It forces the customer to specify precisely what is required;
-\item When the acceptance tests are “green” the customer has much 
-more confidence that real and useful work has been done;
+\item When the acceptance tests pass, the customer has much more confidence on
+the work that has been done;
 \item An executable specification gives a clear and measurable 
 objective to the development team.
 \end{itemize}
 
-Having the acceptance tests centered around a model it makes 
-not only easier to develop a significant number of acceptance tests,
-but also to change the model and regenerate those same tests.
-
-We can benefit even more from mixing model-based and acceptance tests, if the model itself is built around some agile principles:
+\noindent Having the acceptance tests centered around a model makes not only
+easier to develop a significant number of acceptance tests, but also to change
+the model and regenerate those same tests. We can benefit even more from mixing
+model-based and acceptance tests if the model itself is built around some agile
+principles. The test models should:
 \begin{itemize}
-\item Test models should have a precise purpose;
-\item Test models should be light; 
-\item Test models should grow incrementally through an iterative approach;
-\item Test models encourage discussion about the exact behavior of the system;
-\item Test models should not be used for documentation.
+\item be light; 
+\item have a precise purpose;
+\item grow incrementally through an iterative approach;
+\item encourage discussion about the exact behavior of the system;
 \end{itemize}
 
-\subsection{Advantages of model-based testing}
+\subsection{Advantages of Model-Based Testing}
 Model-based testing can have a small cost-benefit over keyword-based testing and a significant cost-benefit over the other testing processes~\cite{1200168}.
 
 It can lead to less time and effort spent on testing if the time needed to write and maintain the model plus the time spent on directing the test generation is less than the cost of manually designing and maintaining a test suite. 
@@ -158,7 +227,7 @@ Quantity means nothing if we loose the quality of the test
 suite. Several studies have shown that the use of a
 model-based approach tends to increase fault detection effectiveness~\cite{Dalal1999,Farchi2002}. It is usual to find numerous faults in the requirements and design documents as a side-effect of modeling~\cite{1200168}. The detection of such faults at an early stage is the major benefit of model-based testing.
 
-\subsection{Disadvantages of model-based testing}
+\subsection{Disadvantages of Model-Based Testing}
 
 In spite of all of the advantages stated above, the industrial adoption of this technology has been slow. The most common problems are the managerial difficulties, the making of easy-to-use tools, the reorganization of the work with the tools~\cite{Robinson2013} and the complexity of the solutions and counter-intuitive modeling~\cite{Jääskeläinen2008}.
 

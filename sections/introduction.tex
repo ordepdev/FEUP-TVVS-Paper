@@ -1,9 +1,44 @@
 \section{Introduction}
 
-Software testing is an investigation conducted to provide stakeholders with information about the quality of the product or service under test. Software testing can also provide an objective, independent view of the software quality and performance that allows the business stakeholders to assess and understand the quality of software implementation. Software Testing has also been considered as a time consuming activity that calls for enhanced and powerful test techniques with the intent of finding software bugs. In this paper, we compare some of the techniques and strategies used to take full advantage of testing automation.
+Software must be tested to have confidence that it will work as it should in
+its intended environment. Software testing needs to be effective at finding
+any defects which are there, but it should also be efficient, performing the
+tests as quickly and cheaply as possible. Software testing can provide an
+objective, independent view of the software quality and performance that allows
+the business stakeholders to understand the quality of software implementation.
+It has been considered as a time consuming activity that calls for enhanced and
+powerful test techniques with the intent of finding software bugs but automating
+software testing can significantly reduce the effort required for adequate
+testing, and significantly reduce the time needed to run tests that would take
+hours to run manually.
 
-\subsection{Classic Testing Processes}
-\subsection{Manual Testing Process}
-\subsection{Capture/Replay Testing Process}
-\subsection{Script-Based Testing Process}
-\subsection{Model-Based Testing Process}
+Automating tests is a skill, but a very different skill from testing. Many
+organizations find that it is more expensive to automate a test than to perform
+it once manually. In order to gain benefits from test automation, the tests to
+be automated need to be carefully selected and implemented. Automating a test
+affects how economic and evolvable it is. Once implemented, the cost of running
+an automated test is much more cheaper than perform it manually. However,
+automated tests generally cost more to create and maintain. The better the
+approach to automating tests, the cheaper it will be to implement them in the
+long term.
+
+There are a number of ways in which testing tools can automate parts of test
+case design. These tools are sometimes called test input generation tools and
+their approach is useful in some contexts, but they will never completely
+replace the intellectual testing activities. One problem with all test case
+design approaches is that the tool may generate a very large number of tests.
+Some tools include ways of minimizing the tests generated against the specified
+criteria. However the tool may still generate far too many tests to be run in a
+reasonable time. The tool cannot distinguish which tests are the most important,
+since it requires creative intelligence only available from humans. Test
+generation tools rely on algorithms to generate the tests. The tools will be
+more thorough and more accurate than a human tester using the same algorithm,
+so this is an advantage. However, a human being will think of additional tests
+to try, may identify aspects or requirements that are missing, may be able to
+identify where the specification is incorrect based on personal knowledge and
+may be able to determine which are the most important test cases to run. The
+best use of test generation tool is when the scope of what can and cannot be
+done by them is fully understood.
+
+In this paper, we will explore and compare some of the techniques and strategies
+used to take full advantage of testing automation.

@@ -1,0 +1,99 @@
+3 Lessons learned: organizational issues
+13.6.3.1 There must be a commitment to support test automation
+In order to make test automation work, and to keep it working, both testers
+and management have to be willing and able to make changes in the established
+development process.
+Testers must be willing to learn new methods, measure their work, and
+commit to creating and maintaining high quality, reusable test scripts.
+Management must be willing to make time for tester education and to
+recognize the importance and value of their testing resources. 
+
+Finding the time to automate testing
+The reality of commercial software development is that testers must be
+ready to test when they receive the code from the developers.
+Virtually all the current software development models advocate the
+involvement of the testers during the design and development phases of the
+project. Prodigy has always encouraged this early tester involvement as
+well. But there had been no satisfactory method for communicating design
+and implementation details that was both clear and reliable.
+The problem is that maintaining formal detailed documentation, design
+specifications, and test plans is too cumbersome and time consuming for
+use in an environment where development can complete and discard six or
+seven prototypes in a day and testers may be expected to test seven versions
+in a week.
+Since there was no mechanism for conducting and documenting a
+meaningful developer-tester dialog, the results of early tester involvement
+were often disappointing. Testers were not normally able to gain a sufficiently
+detailed description of the software function to size the effort, let
+alone begin detailed planning. 
+
+13.6.3.4 Reuse testing resources
+Test scripts and test plans cannot become 'disposable'. They are as durable
+as source code and design documentation. What would be the reaction to a
+developer who insisted on rewriting every program that had an error or
+every program that came from some other developer?
+Ideally, test scripts and key traces should accompany code through the
+entire project life cycle. Each group in the project life cycle should be able
+to add to or refine the repository of available test scripts.
+The test base benefits greatly from the diverse perspectives and priorities
+of the contributing testers. In this way the test repository grows along
+with the system, becoming the best defense against the ever-growing complexity
+of the software. 
+
+Supplying testers with tools alone does not insure that test automation will
+take place. Several things are necessary to sustain test automation:
+1. methods are more important than tools;
+2. there are many testing tasks that must be automated besides test script
+capture and replay;
+3. the test tools must support a structured test methodology and automate
+the measuring of software;
+4. greater value must be placed on test resources. If test scripts are not
+maintained for reuse there is little value in script replay automation;
+5. management has a key role to play in enabling automation. They must
+insure that testers receive the education that they need to succeed and
+that the development cycle is adjusted to accommodate the pre-testing
+tasks required by automated test efforts. Management must also expect
+software measurements and cumulative results reports from testers.
+The benefits of good testing practice together with test automation are
+significant:
+1. test efforts can be reduced dramatically, from 30% to 50%;
+2. the quality of software testing can be greatly improved through the use
+of structured test methods and software metrics;
+3. through the use of measurements, project sizing and scheduling esti
+mates can be greatly improved.
+Test automation is a part of the product development life cycle, a complex
+dynamic process spanning years. The end is not in sight. Continuing support
+and commitment must be provided if software test automation efforts
+are to succeed. The most important thing that we learned was that testing is
+much more important than automation. Without good testing methods and
+metrics, test automation may not succeed. 
+
+Test automation is not the same as testing, and the skills needed to be a
+good test automator are not the same skills needed to be a good tester.
+Testing should fit into the software development process at every stage.
+Test cases are best identified and designed early (on the left-hand side of the
+V-model), but can only be executed and compared after the software is
+available for testing (the right-hand side of the V-model).
+Tool support is available for all types of test activities throughout the
+development life cycle, though none of them can (or will ever be able to)
+make any testing activity completely automatic.
+The automation of testing holds great promise and can give significant
+benefits, such as repeatable consistent regression tests that are run more
+often, testing of attributes that are difficult to test manually, better use of
+resources, reuse of tests, earlier time to market, and increased confidence.
+However, many problems typically arise when attempting to automate testing,
+including unrealistic expectations, poor testing practices, a false sense of
+security, maintenance costs, and other technical and organizational problems.
+Although there are ways to support test case design activities, we consider
+that automating the more clerical and tedious aspects of testing
+generally gives more benefit than trying to automate the more intellectual
+test activities. This book therefore concentrates on the test activities of executing
+test cases and comparing outcomes. This is what we mean by
+automating software testing.
+Test automation has its limitations. It does not replace manual testing, and
+manual testing will find more defects than automated testing. There is a
+greater reliance on the correctness of expected outcomes. Test automation
+does not improve test effectiveness, and can limit software development
+options. The testing tools have no imagination and are not very flexible.
+However, test automation can significantly increase the quality and productivity
+of software testing
