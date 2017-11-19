@@ -294,7 +294,33 @@ Up to date requirements plays a big role in model-based testing. The test cases 
 
 Since this approach can generate huge numbers of tests, it becomes necessary to move toward other measurements of test progress instead of relying on the number-of-tests metric.
 
-\section{Relations between discussed techniques}
+\section{Comparison between discussed techniques}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{l|p{55mm}|p{55mm}}
+\textbf{Approach} & \textbf{Advantages} & \textbf{Disadvantages} \\
+Data-driven
+  & Easy to implement and maintain.
+  & Needs skilled resources to implement the test scripts. \\
+Keyword-driven
+  & Tool independent and highly scalable.
+  & Needs skilled resources to implement the test scripts.
+    Driver an test scripts could become too complex. \\
+\hline
+Hybrid-driven
+  & Combines the advantages \newline from all of the approaches above
+  & It tend to be more complex since \newline it combines all of the approaches above.\\
+\hline
+Model-based
+  & Model reuse, automatic test generation and higher fault detection.
+  & It's too complex when comparing with the approaches above.
+    Needs skilled resources to model the system. \\
+\end{tabular}
+\caption{Comparison between data-driven, keyword-driven, hybrid-driven, and
+  model-based testing.}
+\label{table:comparison-between-approaches}
+\end{table}
 
 The improved maintainability of test scripts is a strong argument in favor of
 data-driven and keyword-driven test automation approaches~\cite{Kramer2016}.
@@ -324,3 +350,6 @@ In practice, the model-based testing model contains action words instead of
 detailed test actions from the keyword-driven approach, and equivalence
 partitions and logical operators instead of concrete values for input data and
 expected results from the data-driven approach.
+
+Choosing the right framework, always depends on the project, the maturity of the
+team, and the available resources.

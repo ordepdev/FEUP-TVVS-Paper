@@ -7,6 +7,9 @@
 \usepackage{geometry}
 \usepackage{url,tocloft,cite,subfiles,graphicx,fancyhdr,titling,enumitem,tikz,hyperref,listings}
 
+\usepackage{datetime}
+\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
+
 \pagestyle{fancy}
 \fontfamily{garamond}
 \fancyhead{} % reset header
@@ -64,7 +67,11 @@
 }
 \posttitle{\end{center}}
 \title{An overview of testing automation techniques}
-\author{Pedro Tavares}
+\date{\monthyeardate\today}
+\author{
+  Pedro Tavares, xxxx \\
+  \texttt{\{up201708899,xxxx\}@fe.up.pt}
+}
 
 \begin{document}
 \rowcolors{2}{gray!15}{white}
