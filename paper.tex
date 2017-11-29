@@ -15,7 +15,7 @@
 \fancyhead{} % reset header
 \fancyfoot{} % reset footer
 \fancyfoot[R]{\thepage} % page number on right footer 
-\setlength{\headheight}{40pt} % header height
+\setlength{\headheight}{44pt} % header height
 \setlist[itemize]{noitemsep, topsep=0pt}
 \lhead{\includegraphics[width=4.5cm]{UP-02.png}} % header with image
 \renewcommand{\headrulewidth}{0pt}
@@ -69,12 +69,11 @@
 \title{An overview of testing automation techniques}
 \date{\monthyeardate\today}
 \author{
-  Pedro Tavares, xxxx \\
-  \texttt{\{up201708899,xxxx\}@fe.up.pt}
+  Pedro Tavares \\ \texttt{up201708899@fe.up.pt} 
+  \and Bruno Coelho \\ \texttt{up201708890@fe.up.pt}
 }
 
 \begin{document}
-\rowcolors{2}{gray!15}{white}
 \begin{titlingpage}
 \maketitle
 \end{titlingpage}
@@ -82,20 +81,14 @@
 \newpage
 \tableofcontents
 \newpage
-
-\newpage
+\rowcolors{2}{gray!15}{white}
 \subfile{sections/introduction}
 \newpage
 \subfile{sections/data-driven}
 \subfile{sections/keyword-driven}
-\section{Hybrid-Driven}
-\newpage
-\newpage
+\subfile{sections/hybrid-driven}
 \subfile{sections/model-driven}
-\newpage
 \subfile{sections/conclusion}
-
-\newpage
 \bibliographystyle{unsrt}
 \bibliography{paper}
 

@@ -95,7 +95,7 @@ best for data-oriented systems and transition-based
 notations are best for control-oriented systems~\cite{1200168} but the system
 could not be so easy to classify and it can be a mix of both data and
 control-oriented. Choosing the wrong notation could make the system harder to
-model. A good choice should the right balance between the notation tooling
+model. A good choice should be the right balance between the notation tooling
 support and what notation suits the system best. It is important to build
 an accurate model, written in a formal modeling notation that has precise
 semantics and unambiguous meaning in order to allow different tools to
@@ -286,13 +286,14 @@ Model-based testing is not as trivial as other testing techniques, and requires 
 
 Up to date requirements plays a big role in model-based testing. The test cases are very coupled to the requirements, and requirements change, often. If the model is build based on outdated requirements, it will lead to unreliable results and one of these tests fails, it's hard to check if the failure is caused by the system under test, the driver, or even from the model itself. This process makes more difficult and time-consuming to find the root cause of the failing test.
 
+\newpage
+Since this approach can generate huge numbers of tests, it becomes necessary to move toward other measurements of test progress instead of relying on the number-of-tests metric.
+
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.5]{metrics.png}
 \caption{Possible measures for model-based testing metrics~\cite{Kramer2016}.} \label{fig:metrics}
 \end{figure}
-
-Since this approach can generate huge numbers of tests, it becomes necessary to move toward other measurements of test progress instead of relying on the number-of-tests metric.
 
 \section{Comparison between discussed techniques}
 
@@ -339,7 +340,7 @@ minimizes source code redundancy and maintenance effort.
 
 Model-based testing supports data-driven and keyword-driven test automation
 approaches and takes the concept of abstraction even further. In the model-based
-approach, there are is no maintenance of individual test scripts. Instead, the
+approach, there are no maintenance of individual test scripts. Instead, the
 changes are directly performed in both model and adapter layer. It moves the
 maintenance of the test scripts to a higher abstraction level, since the model
 provides a graphical and abstract representation of them. Using a test generator
